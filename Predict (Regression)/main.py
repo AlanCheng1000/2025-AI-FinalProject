@@ -21,8 +21,6 @@ def main():
     model_type = 'resnet18' # 圖片使用模型: resnet18/efficientnet_b0/simple_cnn
     use_extra_params = True
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    model = CNN(model_type, use_extra_params).to(device)
     criterion = nn.L1Loss() # L1Loss/SmoothL1Loss/MSELoss
 
     for i in range(nRound):
@@ -47,6 +45,7 @@ def main():
             test_dataset = TestDataset(test_images, test_extra_params)
             
             logger.info("Start training CNN")
+            model = CNN(model_type, use_extra_params).to(device)
             train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
             val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
 
@@ -88,6 +87,7 @@ def main():
             test_dataset = TestDataset(test_images, test_extra_params)
             
             logger.info("Start training CNN")
+            model = CNN(model_type, use_extra_params).to(device)
             train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
             val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
 
@@ -146,6 +146,7 @@ def main():
             CNN - train and validate
             """
             logger.info("Start training CNN")
+            model = CNN(model_type, use_extra_params).to(device)
             train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
             val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
 
